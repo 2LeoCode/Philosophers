@@ -6,7 +6,7 @@
 /*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 01:36:29 by crochu            #+#    #+#             */
-/*   Updated: 2021/11/16 05:17:34 by crochu           ###   ########.fr       */
+/*   Updated: 2021/11/17 03:46:25 by crochu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,11 @@ static int	init_philo(void)
 
 int	init_forks(void)
 {
+	t_philo_data *const	pdata = philo_data();
+
 	sem_unlink("/PHILO_FORKS");
-	philo_data()->forks = sem_new("/PHILO_FORKS", O_CREAT | O_EXCL, S_IRWXU,
-		philo_data()->philo_cnt);
+	pdata->forks = sem_new("/PHILO_FORKS", O_CREAT | O_EXCL, S_IRWXU,
+			philo_data()->philo_cnt);
 	if (!philo_data()->forks || gb_push(philo_data()->forks, sem_kill))
 		return (-1);
 	return (0);
@@ -49,12 +51,14 @@ int	setup_threads(unsigned int cnt)
 
 	i = ~0;
 	while (++i < cnt)
+	{
 		if (init_philo())
 		{
 			philo_data()->wait = false;
 			philo_data()->end_simulation = true;
 			return (-1);
 		}
+	}
 	philo_data()->begin_time = get_current_time();
 	philo_data()->wait = false;
 	return (0);

@@ -6,19 +6,19 @@
 /*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 01:33:36 by crochu            #+#    #+#             */
-/*   Updated: 2021/11/14 01:44:23 by crochu           ###   ########.fr       */
+/*   Updated: 2021/11/17 03:31:33 by crochu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 #include <unistd.h>
 
-int invalid_arguments(const char *exec_name)
+int	invalid_arguments(const char *exec_name)
 {
 	write(2, "Usage: ", 7);
 	ft_fprintstr(exec_name, 2);
 	write(2, " number_of_philosophers time_to_die time_to_eat time_to_sleep "
-	"[number_of_times_each_philosopher_must_eat]\n", 106);
+		"[number_of_times_each_philosopher_must_eat]\n", 106);
 	return (1);
 }
 

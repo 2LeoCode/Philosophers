@@ -6,7 +6,7 @@
 /*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 01:24:45 by crochu            #+#    #+#             */
-/*   Updated: 2021/11/16 05:15:17 by crochu           ###   ########.fr       */
+/*   Updated: 2021/11/17 03:33:20 by crochu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static short	philo_eat(t_philo *p)
 	pthread_mutex_lock(p->right);
 	ft_usleep(200);
 	if (print_message(p, "has taken a fork")
-	|| print_message(p, "has taken a fork") || print_message(p, "is eating"))
+		|| print_message(p, "has taken a fork")
+		|| print_message(p, "is eating"))
 	{
 		pthread_mutex_unlock(p->left);
 		pthread_mutex_unlock(p->right);
@@ -65,7 +66,8 @@ void	*philo_routine(void *data)
 		if (philo_eat(philo) || philo_sleep(philo) || philo_think(philo))
 			break ;
 	pthread_mutex_lock(&philo_data()->write_mutex);
-	if (!philo_data()->end_simulation && philo->eat_cnt != philo_data()->needed_food)
+	if (!philo_data()->end_simulation
+		&& philo->eat_cnt != philo_data()->needed_food)
 	{
 		ft_printul((get_current_time() - philo_data()->begin_time) / 1000);
 		ft_printc(' ');

@@ -6,7 +6,7 @@
 /*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 01:36:29 by crochu            #+#    #+#             */
-/*   Updated: 2021/11/16 05:15:44 by crochu           ###   ########.fr       */
+/*   Updated: 2021/11/17 03:32:42 by crochu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,15 @@ int	init_forks(t_flex **forks_addr)
 {
 	unsigned int	i;
 
-	if (gb_alloc_flex(forks_addr, philo_data()->philo_cnt * sizeof(pthread_mutex_t)))
+	if (gb_alloc_flex(forks_addr,
+			philo_data()->philo_cnt * sizeof(pthread_mutex_t)))
 		return (-1);
 	i = ~0;
 	while (++i < philo_data()->philo_cnt)
 	{
 		pthread_mutex_init((pthread_mutex_t *)(*forks_addr)->data + i, NULL);
 		if (gb_push((pthread_mutex_t *)(*forks_addr)->data + i,
-		(t_freef *)pthread_mutex_destroy))
+			(t_freef *)pthread_mutex_destroy))
 			return (-1);
 	}
 	return (0);
@@ -58,13 +59,15 @@ int	setup_threads(t_flex *forks, unsigned int cnt)
 
 	i = ~0;
 	while (++i < cnt)
+	{
 		if (init_philo((pthread_mutex_t *)forks->data + i,
-		(pthread_mutex_t *)forks->data + (i + 1) % cnt))
+				(pthread_mutex_t *)forks->data + (i + 1) % cnt))
 		{
 			philo_data()->wait = false;
 			philo_data()->end_simulation = true;
 			return (-1);
 		}
+	}
 	philo_data()->begin_time = get_current_time();
 	philo_data()->wait = false;
 	return (0);

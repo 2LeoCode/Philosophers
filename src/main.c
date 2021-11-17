@@ -6,7 +6,7 @@
 /*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 15:38:00 by crochu            #+#    #+#             */
-/*   Updated: 2021/11/16 05:10:08 by crochu           ###   ########.fr       */
+/*   Updated: 2021/11/17 03:29:13 by crochu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <gbft.h>
 #include <exceptions.h>
 
-int philo_error(int (*errfun)(), void *param)
+static int	philo_error(int (*errfun)(), void *param)
 {
 	gb_clear();
 	if (param)
@@ -25,7 +25,7 @@ int philo_error(int (*errfun)(), void *param)
 	return (errfun());
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	int				pdata_ret;
 	t_flex			*forks;

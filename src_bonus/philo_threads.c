@@ -6,7 +6,7 @@
 /*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 01:24:45 by crochu            #+#    #+#             */
-/*   Updated: 2021/11/17 02:08:37 by crochu           ###   ########.fr       */
+/*   Updated: 2021/11/17 03:46:32 by crochu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	*philo_routine(void *data)
 			break ;
 	sem_wait(philo_data()->write_sem->ptr);
 	if (!philo_data()->end_simulation
-	&& philo->eat_cnt != philo_data()->needed_food)
+		&& philo->eat_cnt != philo_data()->needed_food)
 	{
 		ft_printul((get_current_time() - philo_data()->begin_time) / 1000);
 		ft_printc(' ');

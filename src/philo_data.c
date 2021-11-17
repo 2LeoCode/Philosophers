@@ -6,7 +6,7 @@
 /*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 00:35:31 by crochu            #+#    #+#             */
-/*   Updated: 2021/11/16 05:12:47 by crochu           ###   ########.fr       */
+/*   Updated: 2021/11/17 03:30:53 by crochu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ bool	args_not_digit(int cnt, char **args)
 
 int	init_philo_data(int cnt, char **data)
 {
-	t_philo_data	*const pdata = philo_data();
+	t_philo_data *const	pdata = philo_data();
 
 	pdata->wait = true;
 	pdata->end_simulation = false;
@@ -56,8 +56,8 @@ int	init_philo_data(int cnt, char **data)
 		pdata->needed_food = ft_strtoul(data[4], NULL, 0);
 	else
 		pdata->needed_food = NO_EAT_CNT;
-	if (errno == ERANGE || ~0UL / 1000 < pdata->time_die
-	|| ~0UL / 1000 < pdata->time_eat ||  ~0UL / 1000 < pdata->time_sleep)
+	if (errno == ERANGE || (~0UL / 1000 < pdata->time_die)
+		|| (~0UL / 1000 < pdata->time_eat) || (~0UL / 1000 < pdata->time_sleep))
 		return (1);
 	pdata->time_die *= 1000;
 	pdata->time_eat *= 1000;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strtoul.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
+/*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 01:57:02 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2021/10/27 16:53:42 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2021/11/17 03:20:41 by crochu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ static const char	g_base[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 static unsigned long	ft_getbasevalue(int c, int base)
 {
-	int	i = 0;
+	int	i;
 
+	i = 0;
 	while (i < base && ft_toupper(c) != g_base[i])
 		++i;
 	if (i < base)
@@ -37,7 +38,8 @@ static unsigned long	ft_getnumber(const char **nptr, int base)
 	base_value = ft_getbasevalue(**nptr, base);
 	while (errno != ERANGE && base_value != ~0UL)
 	{
-		if (((~0UL - base_value) / base) < n) {
+		if (((~0UL - base_value) / base) < n)
+		{
 			errno = ERANGE;
 			n = ~0UL;
 		}
@@ -68,7 +70,7 @@ unsigned long	ft_strtoul(const char *nptr, char **endptr, int base)
 	}
 	while (ft_isspace(*nptr))
 		++nptr;
-	sign = (*nptr == '+' || *nptr == '-') && *nptr++ == '-';
+	sign = ((*nptr == '+' || *nptr == '-') && *nptr++ == '-');
 	if (base == 16 && !ft_strncasecmp(nptr, "0x", 2))
 		nptr += 2;
 	first_digit = ft_getbasevalue(*nptr, base);

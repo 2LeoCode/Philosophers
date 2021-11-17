@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
+/*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 17:11:11 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2021/10/29 16:55:00 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2021/11/17 03:25:17 by crochu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,14 @@ static size_t	ft_splitsize(const char *s, int c)
 	return (size);
 }
 
+static void	next_token(const char **s, char c)
+{
+	while (**s && **s != c)
+		++*s;
+	while (**s && **s == c)
+		++*s;
+}
+
 char	**ft_split(const char *s, char c)
 {
 	char	**ptr;
@@ -43,10 +51,7 @@ char	**ft_split(const char *s, char c)
 		while (*s)
 		{
 			ptr[i + 1] = ft_strcdup(s, c);
-			while (*s && *s != c)
-				++s;
-			while (*s && *s == c)
-				++s;
+			next_token(&s, c);
 			if (ptr[++i])
 				continue ;
 			while (i--)

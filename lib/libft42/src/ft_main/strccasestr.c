@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strccasestr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
+/*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 15:50:27 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2021/10/19 18:31:10 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2021/11/17 02:58:05 by crochu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_strcstr(const char *haystack, const char *needle, int stop)
 	while (*haystack && *haystack != stop)
 	{
 		if (ft_toupper(*haystack) == ft_toupper(*needle)
-				&& !ft_strncasecmp(haystack, needle, needle_len))
+			&& !ft_strncasecmp(haystack, needle, needle_len))
 			return ((char *)haystack);
 		++haystack;
 	}

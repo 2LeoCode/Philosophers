@@ -6,7 +6,7 @@
 /*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 13:11:17 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2021/11/09 17:26:20 by crochu           ###   ########.fr       */
+/*   Updated: 2021/11/17 02:52:43 by crochu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,21 @@
 /*
 **	<ctype.h>
 */
-int		ft_isalnum(int c);
-int		ft_isalpha(int c);
-int		ft_isascii(int c);
-int		ft_isblank(int c);
-int		ft_iscntrl(int c);
-int		ft_isdigit(int c);
-int		ft_isgraph(int c);
-int		ft_islower(int c);
-int		ft_isprint(int c);
-int		ft_ispunct(int c);
-int		ft_isspace(int c);
-int		ft_isupper(int c);
-int		ft_isxdigit(int c);
-int		ft_toupper(int c);
-int		ft_tolower(int c);
+int					ft_isalnum(int c);
+int					ft_isalpha(int c);
+int					ft_isascii(int c);
+int					ft_isblank(int c);
+int					ft_iscntrl(int c);
+int					ft_isdigit(int c);
+int					ft_isgraph(int c);
+int					ft_islower(int c);
+int					ft_isprint(int c);
+int					ft_ispunct(int c);
+int					ft_isspace(int c);
+int					ft_isupper(int c);
+int					ft_isxdigit(int c);
+int					ft_toupper(int c);
+int					ft_tolower(int c);
 /*
 **
 */
@@ -40,36 +40,38 @@ int		ft_tolower(int c);
 /*
 **	<string.h>
 */
-size_t	ft_strlen(const char *s);
-size_t	ft_strnlen(const char *s, size_t n);
-void	*ft_memset(void *s, int c, size_t n);
-void	ft_bzero(void *s, size_t n);
-void	*ft_memcpy(void *dst, const void *src, size_t n);
-void	*ft_memmove(void *dst, const void *src, size_t n);
-char	*ft_stpcpy(char *dst, const char *src);
-char	*ft_strcpy(char *dst, const char *src);
-char	*ft_stpncpy(char *dst, const char *src, size_t n);
-char	*ft_strncpy(char *dst, const char *src, size_t n);
-size_t	ft_strlcpy(char *dst, const char *src, size_t size);
-char	*ft_strcat(char *dst, const char *src);
-char	*ft_strncat(char *dst, const char *src, size_t n);
-size_t	ft_strlcat(char *dst, const char *src, size_t size);
-char	*ft_strchr(const char *s, int c);
-char	*ft_strrchr(const char *s, int c);
-char	*ft_strchrnul(const char *s, int c);
-int		ft_strcmp(const char *s1, const char *s2);
-int		ft_strcasecmp(const char *s1, const char *s2);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-int		ft_strncasecmp(const char *s1, const char *s2, size_t n);
-int		ft_memcmp(const void *m1, const void *m2, size_t n);
-char	*ft_strstr(const char *haystack, const char *needle);
-char	*ft_strnstr(const char *haystack, const char *needle, size_t n);
-char	*ft_strcasestr(const char *haystack, const char *needle);
-char	*ft_strncasestr(const char *haystack, const char *needle, size_t n);
-char	*ft_strdup(const char *s);
-char	*ft_strndup(const char *s, size_t n);
-void	*ft_memchr(const void *s, int c, size_t n);
-void	*ft_memrchr(const void *s, int c, size_t n);
+size_t				ft_strlen(const char *s);
+size_t				ft_strnlen(const char *s, size_t n);
+void				*ft_memset(void *s, int c, size_t n);
+void				ft_bzero(void *s, size_t n);
+void				*ft_memcpy(void *dst, const void *src, size_t n);
+void				*ft_memmove(void *dst, const void *src, size_t n);
+char				*ft_stpcpy(char *dst, const char *src);
+char				*ft_strcpy(char *dst, const char *src);
+char				*ft_stpncpy(char *dst, const char *src, size_t n);
+char				*ft_strncpy(char *dst, const char *src, size_t n);
+size_t				ft_strlcpy(char *dst, const char *src, size_t size);
+char				*ft_strcat(char *dst, const char *src);
+char				*ft_strncat(char *dst, const char *src, size_t n);
+size_t				ft_strlcat(char *dst, const char *src, size_t size);
+char				*ft_strchr(const char *s, int c);
+char				*ft_strrchr(const char *s, int c);
+char				*ft_strchrnul(const char *s, int c);
+int					ft_strcmp(const char *s1, const char *s2);
+int					ft_strcasecmp(const char *s1, const char *s2);
+int					ft_strncmp(const char *s1, const char *s2, size_t n);
+int					ft_strncasecmp(const char *s1, const char *s2, size_t n);
+int					ft_memcmp(const void *m1, const void *m2, size_t n);
+char				*ft_strstr(const char *haystack, const char *needle);
+char				*ft_strnstr(const char *haystack, const char *needle,
+						size_t n);
+char				*ft_strcasestr(const char *haystack, const char *needle);
+char				*ft_strncasestr(const char *haystack, const char *needle,
+						size_t n);
+char				*ft_strdup(const char *s);
+char				*ft_strndup(const char *s, size_t n);
+void				*ft_memchr(const void *s, int c, size_t n);
+void				*ft_memrchr(const void *s, int c, size_t n);
 /*
 **
 */

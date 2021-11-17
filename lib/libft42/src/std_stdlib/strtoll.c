@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strtoll.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
+/*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 02:51:00 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2021/10/27 16:12:44 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2021/11/17 03:22:01 by crochu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@ static const char	g_base[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 static long long	ft_getbasevalue(int c, int base)
 {
-	int	i = 0;
+	int	i;
 
+	i = 0;
 	while (i < base && ft_toupper(c) != g_base[i])
 		++i;
 	if (i < base)
@@ -57,7 +58,7 @@ static long long	ft_overflow_add(long long a, long long b)
 	return (a + b);
 }
 
-static long long ft_getnumber(const char **nptr, int base, bool sign)
+static long long	ft_getnumber(const char **nptr, int base, bool sign)
 {
 	long long	n;
 	long long	base_value;
@@ -96,7 +97,7 @@ long long	ft_strtoll(const char *nptr, char **endptr, int base)
 	}
 	while (ft_isspace(*nptr))
 		++nptr;
-	sign = (*nptr == '+' || *nptr == '-') && *nptr++ == '-';
+	sign = ((*nptr == '+' || *nptr == '-') && *nptr++ == '-');
 	if (base == 16 && !ft_strncasecmp(nptr, "0x", 2))
 		nptr += 2;
 	first_digit = ft_getbasevalue(*nptr, base);

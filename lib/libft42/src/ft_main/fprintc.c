@@ -6,7 +6,7 @@
 /*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 17:14:25 by crochu            #+#    #+#             */
-/*   Updated: 2021/11/09 17:16:08 by crochu           ###   ########.fr       */
+/*   Updated: 2021/11/17 03:02:08 by crochu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int	ft_fprintc(int c, int fd)
 {
-	return (write(fd, (char []){ c }, 1));
+	return (write(fd, (char []){c}, 1));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strmap.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
+/*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 03:51:41 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2021/10/13 11:03:51 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2021/11/17 02:59:00 by crochu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strmap(const char *s, char (*f)(char))
 	if (ptr)
 	{
 		i = ~0;
-		while  (++i < len)
+		while (++i < len)
 			ptr[i] = f(s[i]);
 	}
 	return (ptr);

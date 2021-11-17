@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_sort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
+/*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 22:53:12 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2021/10/29 20:16:34 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2021/11/17 03:14:52 by crochu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stddef.h>
 #include <libft.h>
 #include <libft_types.h>
-#include <stdio.h>
+
 static int	compare(void *a, void *b, t_cmpf cmp_fun, void *cmp_param)
 {
 	if (cmp_param)

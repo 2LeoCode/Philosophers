@@ -6,7 +6,7 @@
 /*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 14:19:35 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2021/11/12 00:02:55 by crochu           ###   ########.fr       */
+/*   Updated: 2021/11/17 03:15:14 by crochu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 static t_chunk	*make_chunk(void *data, t_freef *free_fun, bool is_list)
 {
 	t_chunk	*ptr;
-	
+
 	ptr = ft_malloc(sizeof(t_chunk));
 	if (ptr)
 	{

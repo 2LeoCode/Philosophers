@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   string_rpl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
+/*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 18:17:06 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2021/10/29 15:53:09 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2021/11/17 03:08:55 by crochu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ short	string_rpl(t_string **s, const char *src, unsigned int index,
 		&& string_realloc(s, new_len) == STRING_FAILURE)
 		return (STRING_FAILURE);
 	ft_memmove((*s)->data + index + src_len, (*s)->data + index + n,
-			(*s)->length - index - n);
+		(*s)->length - index - n);
 	ft_memcpy((*s)->data + index, src, src_len);
 	(*s)->length = new_len;
 	if (n > src_len)

@@ -6,7 +6,7 @@
 /*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 01:24:45 by crochu            #+#    #+#             */
-/*   Updated: 2021/11/17 03:46:32 by crochu           ###   ########.fr       */
+/*   Updated: 2021/11/17 14:07:31 by crochu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ static short	philo_think(t_philo *p)
 {
 	if (is_simulation_over(p) || print_message(p, "is thinking"))
 		return (1);
-	ft_usleep(500);
 	if (is_simulation_over(p))
 		return (1);
 	return (0);
@@ -66,6 +65,8 @@ void	*philo_routine(void *data)
 	philo = data;
 	while (philo_data()->wait)
 		continue ;
+	if (philo->index % 2)
+		ft_usleep(500);
 	philo->last_time_eat = get_current_time();
 	while (true)
 		if (philo_eat(philo) || philo_sleep(philo) || philo_think(philo))

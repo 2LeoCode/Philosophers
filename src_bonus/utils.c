@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/11 15:59:12 by crochu            #+#    #+#             */
-/*   Updated: 2021/11/17 14:44:43 by crochu           ###   ########.fr       */
+/*   Created: 2021/11/11 15:59:12 by Leo Suardi        #+#    #+#             */
+/*   Updated: 2022/01/06 11:42:16 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,15 @@ bool	is_simulation_over(t_philo *p)
 		|| philo_data()->needed_food == p->eat_cnt);
 }
 
+void	philo_log(t_philo *p, const char *msg)
+{
+	ft_printul((get_current_time() - philo_data()->begin_time) / 1000);
+	ft_printc(' ');
+	ft_printul(p->index);
+	ft_printc(' ');
+	ft_println(msg);
+}
+
 int	print_message(t_philo *p, const char *msg)
 {
 	sem_wait(philo_data()->write_sem->ptr);
@@ -54,11 +63,7 @@ int	print_message(t_philo *p, const char *msg)
 		sem_post(philo_data()->write_sem->ptr);
 		return (1);
 	}
-	ft_printul((get_current_time() - philo_data()->begin_time) / 1000);
-	ft_printc(' ');
-	ft_printul(p->index);
-	ft_printc(' ');
-	ft_println(msg);
+	philo_log(p, msg);
 	sem_post(philo_data()->write_sem->ptr);
 	return (0);
 }

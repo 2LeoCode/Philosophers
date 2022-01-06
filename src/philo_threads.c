@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_threads.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/10 01:24:45 by crochu            #+#    #+#             */
-/*   Updated: 2021/11/17 03:33:20 by crochu           ###   ########.fr       */
+/*   Created: 2021/11/10 01:24:45 by Leo Suardi        #+#    #+#             */
+/*   Updated: 2022/01/06 18:29:48 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@
 static short	philo_eat(t_philo *p)
 {
 	pthread_mutex_lock(p->left);
+	if (p->left == p->right)
+	{
+		philo_log(p, "has taken a fork");
+		ft_usleep(philo_data()->time_die);
+		pthread_mutex_unlock(p->left);
+		return (1);
+	}
 	pthread_mutex_lock(p->right);
 	ft_usleep(200);
 	if (print_message(p, "has taken a fork")
@@ -55,12 +62,12 @@ static short	philo_think(t_philo *p)
 
 void	*philo_routine(void *data)
 {
-	t_philo			*philo;
+	t_philo	*philo;
 
 	philo = data;
 	while (philo_data()->wait)
 		continue ;
-	ft_usleep((philo->index - 1) * 500);
+	ft_usleep((philo->index - 1) * 200);
 	philo->last_time_eat = get_current_time();
 	while (true)
 		if (philo_eat(philo) || philo_sleep(philo) || philo_think(philo))
@@ -69,10 +76,7 @@ void	*philo_routine(void *data)
 	if (!philo_data()->end_simulation
 		&& philo->eat_cnt != philo_data()->needed_food)
 	{
-		ft_printul((get_current_time() - philo_data()->begin_time) / 1000);
-		ft_printc(' ');
-		ft_printul(philo->index);
-		ft_println(" died");
+		philo_log(philo, "died");
 		philo_data()->end_simulation = true;
 	}
 	else if (philo_data()->philo_cnt == 1)

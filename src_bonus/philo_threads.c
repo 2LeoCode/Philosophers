@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_threads.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/10 01:24:45 by crochu            #+#    #+#             */
-/*   Updated: 2021/11/17 14:07:31 by crochu           ###   ########.fr       */
+/*   Created: 2021/11/10 01:24:45 by Leo Suardi        #+#    #+#             */
+/*   Updated: 2022/01/06 18:38:48 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,26 @@
 #include <libft.h>
 #include <unistd.h>
 
+static short	philo_die(int sem_cnt) {
+	while (sem_cnt--)
+		sem_post(philo_data()->forks->ptr);
+	return (1);
+}
+
 static short	philo_eat(t_philo *p)
 {
 	sem_wait(philo_data()->forks->ptr);
 	ft_usleep(200);
 	if (print_message(p, "has taken a fork"))
+		return (philo_die(1));
+	if (philo_data()->philo_cnt == 1)
 	{
-		sem_post(philo_data()->forks->ptr);
-		return (-1);
+		ft_usleep(philo_data()->time_die);
+		return (philo_die(1));
 	}
 	sem_wait(philo_data()->forks->ptr);
 	if (print_message(p, "has taken a fork") || print_message(p, "is eating"))
-	{
-		sem_post(philo_data()->forks->ptr);
-		sem_post(philo_data()->forks->ptr);
-		return (1);
-	}
+		return (philo_die(2));
 	p->last_time_eat = get_current_time();
 	ft_usleep(philo_data()->time_eat);
 	sem_post(philo_data()->forks->ptr);
@@ -51,9 +55,7 @@ static short	philo_sleep(t_philo *p)
 
 static short	philo_think(t_philo *p)
 {
-	if (is_simulation_over(p) || print_message(p, "is thinking"))
-		return (1);
-	if (is_simulation_over(p))
+	if (print_message(p, "is thinking") || is_simulation_over(p))
 		return (1);
 	return (0);
 }
@@ -75,10 +77,7 @@ void	*philo_routine(void *data)
 	if (!philo_data()->end_simulation
 		&& philo->eat_cnt != philo_data()->needed_food)
 	{
-		ft_printul((get_current_time() - philo_data()->begin_time) / 1000);
-		ft_printc(' ');
-		ft_printul(philo->index);
-		ft_println(" died");
+		philo_log(philo, "died");
 		philo_data()->end_simulation = true;
 	}
 	else if (philo_data()->philo_cnt == 1)

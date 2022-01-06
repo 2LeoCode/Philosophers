@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/11 16:01:36 by crochu            #+#    #+#             */
-/*   Updated: 2021/11/16 03:41:02 by crochu           ###   ########.fr       */
+/*   Created: 2021/11/11 16:01:36 by Leo Suardi        #+#    #+#             */
+/*   Updated: 2022/01/05 13:35:27 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_sem {
 
 unsigned long	get_current_time(void);
 void			ft_usleep(unsigned long us);
+void			philo_log(t_philo *p, const char *msg);
 int				print_message(t_philo *p, const char *msg);
 bool			is_simulation_over(t_philo *p);
 

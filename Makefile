@@ -1,27 +1,64 @@
 SHELL=bash
-
-BUILD_DIR=build
-
 NAME=philo
-BONUS_NAME=philo_bonus
+B_NAME=philo_bonus
 
-all: $(NAME)
+CC=clang
+CFLAGS=-Wall -Werror -Wextra
+LFLAGS=-lpthread
 
-$(NAME) $(BONUS_NAME): $(BUILD_DIR)
-	$(MAKE) $@ --no-print-directory -C$(BUILD_DIR)
 
-bonus: $(BONUS_NAME)
+LIBD=lib
+LFTD=$(LIBD)/libft42
+LIBFT=$(LFTD)/libft.a
 
-$(BUILD_DIR):
-	cmake -B$(BUILD_DIR) -H.
+INCD=inc $(LFTD)/inc
+B_INCD=inc_bonus $(LFTD)/inc
+
+SRCD=src
+B_SRCD=src_bonus
+
+OBJD=.obj
+B_OBJD=.obj_bonus
+
+SRC=$(wildcard $(SRCD)/*.c)
+B_SRC=$(wildcard $(B_SRCD)/*.c)
+
+OBJ=$(patsubst $(SRCD)/%.c, $(OBJD)/%.o, $(SRC))
+B_OBJ=$(patsubst $(B_SRCD)/%.c, $(B_OBJD)/%.o, $(B_SRC))
+
+all: $(OBJD) $(LIBFT) $(NAME)
+
+bonus: $(B_OBJD) $(LIBFT) $(B_NAME)
+
+$(OBJD):
+	mkdir $@
+
+$(B_OBJD):
+	mkdir $@
+
+$(LIBFT):
+	$(MAKE) -C$(LFTD)
+
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) $^ $(LIBFT) -o $@ $(LFLAGS)
+
+$(B_NAME): $(B_OBJ)
+	$(CC) $(CFLAGS) $^ $(LIBFT) -o $@ $(LFLAGS)
+
+$(OBJD)/%.o: $(SRCD)/%.c
+	$(CC) $(CFLAGS) $(foreach dir, $(INCD), -I$(dir)) -c $< -o $@
+
+$(B_OBJD)/%.o: $(B_SRCD)/%.c
+	$(CC) $(CFLAGS) $(foreach dir, $(B_INCD), -I$(dir)) -c $< -o $@
 
 clean:
-	$(MAKE) clean -s --no-print-directory -C$(BUILD_DIR)
+	$(MAKE) fclean -C$(LFTD)
+	rm -rf $(OBJD) $(B_OBJD)
 
-fclean:
-	$(MAKE) fclean -s --no-print-directory -Clib/libft42
-	rm -rf $(BUILD_DIR)
+fclean: clean
+	rm -f $(NAME) $(B_NAME)
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+debug:
+	echo $(B_NAME) : $(B_SRC)

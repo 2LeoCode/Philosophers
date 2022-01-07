@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 01:24:45 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/06 18:38:48 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/07 09:53:42 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 #include <libft.h>
 #include <unistd.h>
 
-static short	philo_die(int sem_cnt) {
+static short	philo_die(int sem_cnt)
+{
 	while (sem_cnt--)
 		sem_post(philo_data()->forks->ptr);
 	return (1);
